@@ -8,6 +8,14 @@ const typeDefs = gql`
     createdAt: String
     username: String
     reactionCount: Int
+    reaction: [Reaction]
+  }
+
+  type Reaction {
+    _id: ID
+    reactionBody: String
+    createdAt: String
+    username: String
   }
 
   type Query {
