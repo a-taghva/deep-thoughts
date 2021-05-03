@@ -2,8 +2,9 @@ const { User, Thought } = require('../models')
 
 const resolvers = {
   Query: {
-    async thoughts() {
-      return Thought.find().sort({ createdAt: -1 })
+    async thoughts(parent, { username }) {
+      const params = username ? { username } : {};
+      return Thought.find(params).sort({ createdAt: -1 });
     }
   }
 };
