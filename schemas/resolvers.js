@@ -9,7 +9,7 @@ const resolvers = {
     },
 
     // get a thought by id
-    thoughts: async (parent, { _id }) => {
+    thought: async (parent, { _id }) => {
       return Thought.findOne({ _id });
     },
 
@@ -22,10 +22,10 @@ const resolvers = {
     },
 
     // get a user by username
-    users: async (parent, { username }) => {
+    user: async (parent, { username }) => {
       return User.findOne({ username })
         .select('-__v -password')
-        .populate('firends')
+        .populate('friends')
         .populate('thoughts');
     }
   }
