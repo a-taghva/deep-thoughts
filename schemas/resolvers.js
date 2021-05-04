@@ -1,4 +1,4 @@
-const { User, Thought } = require('../models')
+const { User, Thought } = require('../models');
 
 const resolvers = {
   Query: {
@@ -27,6 +27,18 @@ const resolvers = {
         .select('-__v -password')
         .populate('friends')
         .populate('thoughts');
+    }
+  },
+
+  Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+
+      return user;
+    },
+
+    login: () => {
+
     }
   }
 };
