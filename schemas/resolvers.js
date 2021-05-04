@@ -45,10 +45,10 @@ const resolvers = {
         throw new AuthenticationError('invalid credentials!');
       }
 
-      const correctPw = await User.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('invalid credentials!').errors[0].message;
+        throw new AuthenticationError('invalid credentials!');
       }
 
       return user;
