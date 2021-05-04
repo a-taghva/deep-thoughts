@@ -1,4 +1,5 @@
 const { User, Thought } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
   Query: {
@@ -37,8 +38,20 @@ const resolvers = {
       return user;
     },
 
-    login: () => {
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
+      if (!user) {
+        throw new AuthenticationError('invalid credentials!');
+      }
+
+      const correctPw = await User.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('invalid credentials!').errors[0].message;
+      }
+
+      return user;
     }
   }
 };
