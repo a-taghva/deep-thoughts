@@ -10,8 +10,9 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 
 // establish a new connection to the GraphQL server using Apollo
+// uniform resources identifier
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql'
+  uri: '/graphql'
 })
 
 function App() {
