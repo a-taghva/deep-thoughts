@@ -10,7 +10,7 @@
     "start:dev": "concurrently \"npm run watch\" \"cd client && npm start\"",
     "install": "npm run seed",
     "seed": "node seeders/seeds.js",
-    "heroku-postbuild": "cd client && npm run build"
+    "heroku-postbuild": "cd client && npm i && npm run build"
   },
   "keywords": [],
   "author": "Ali Taghva",
