@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from '../utils/mutations';
 
+import Auth from '../utils/auth';
+
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN_USER);
@@ -26,6 +28,7 @@ const Login = (props) => {
         variables: { ...formState }
       });
 
+      Auth.login(data.login.token);
       console.log(data);
     } catch (e) {
       console.error(e);
