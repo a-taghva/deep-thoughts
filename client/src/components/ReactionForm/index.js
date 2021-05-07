@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 
+import { ADD_REACTION } from '../../utils/mutations';
+import { useMutation } from '@apollo/react-hooks';
+
 const ReactionForm = ({ thoughtId }) => {
   const [reactionBody, setBody] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
+
+  const [addReaction, { error }] = useMutation(ADD_REACTION);
 
   const handleChange = e => {
     const l = e.target.value.length;
@@ -16,8 +21,16 @@ const ReactionForm = ({ thoughtId }) => {
   const handleFormSubmit = async e => {
     e.preventDefault();
 
-    setBody('');
-    setCharacterCount(0);
+    try {
+      await addReaction({
+        variables: { reactionBody, thoughtId }
+      });
+
+      setBody('');
+      setCharacterCount(0);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -25,6 +38,7 @@ const ReactionForm = ({ thoughtId }) => {
       <p className={`m-0 ${characterCount === 280 ? 'text-error' : '' }`}>
         Character Count: {characterCount}/280
       </p>
+      {error && <span className="ml-2">Something went wrong...</span>}
       <form 
         className="flex-row justify-center justify-space-between-md align-stretch"
         onSubmit={handleFormSubmit}
