@@ -50,5 +50,6 @@ export const ADD_THOUGHT = gql`
         _id
       }
     }
-  }
+  } 
 `;
+
