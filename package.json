@@ -9,7 +9,7 @@
     "start:prod": "npm start",
     "start:dev": "concurrently \"npm run watch\" \"cd client && npm start\"",
     "install": "npm run seed",
-    "seed": "npm run seed",
+    "seed": "node seeders/seeds.js",
     "heroku-postbuild": "cd client && npm run build"
   },
   "keywords": [],
