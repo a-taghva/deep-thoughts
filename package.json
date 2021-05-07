@@ -6,10 +6,10 @@
   "scripts": {
     "start": "(if-env NODE_ENV=production && npm run start:prod) || npm run start:dev",
     "watch": "nodemon",
-    "start:prod": "cd server && npm start",
+    "start:prod": "npm start",
     "start:dev": "concurrently \"npm run watch\" \"cd client && npm start\"",
-    "install": "cd server && npm run seed",
-    "seed": "cd server && npm run seed",
+    "install": "npm run seed",
+    "seed": "npm run seed",
     "heroku-postbuild": "cd client && npm run build"
   },
   "keywords": [],
